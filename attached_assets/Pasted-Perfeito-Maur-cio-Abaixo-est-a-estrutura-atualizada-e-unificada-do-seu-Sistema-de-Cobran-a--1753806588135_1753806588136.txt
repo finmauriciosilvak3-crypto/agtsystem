@@ -1,0 +1,318 @@
+Perfeito, Maurício! Abaixo está a **estrutura atualizada e unificada** do seu **Sistema de Cobrança e Controle Financeiro para o Replit T AI**, com o **controle de despesas** reestruturado, incluindo **filtros por data, valor, descrição e usuário**, além das **restrições de acesso por perfil** (cobrador vs. administrador).
+
+---
+
+# 📲 Sistema de Cobrança e Controle Financeiro
+
+### 🔧 Estrutura Completa — Adaptada para Replit T AI
+
+---
+
+## 🎯 Visão Geral
+
+Aplicação web/app para controle de contratos, parcelas, amortizações, geração de recibos, envio de cobranças manuais via WhatsApp gratuito, gestão de despesas e acesso público para consulta de dívidas.
+
+---
+
+## 🖥️ Interface do Sistema
+
+### 🔹 Menu e Toolbar (padrão para todas as páginas)
+
+* **Toolbar Fixa no Topo**
+
+  * À esquerda: ícone hamburguer para expandir o menu lateral.
+  * À direita: nome do usuário logado + foto + botão com seta para baixo → opções: editar perfil, sair.
+* **Menu Lateral Recolhível**
+
+  * Expandido: nome e ícone das funções.
+  * Recolhido: apenas ícones visuais representando cada função.
+  * Interações:
+
+    * Clique no hamburguer → expande.
+    * Clique no “X” ou fora do menu → recolhe.
+
+---
+
+## 🧩 Módulos e Funcionalidades
+
+---
+
+### 1. 🔐 Autenticação
+
+* Login com e-mail ou telefone/senha.
+* Perfis:
+
+  * **Administrador**: acesso total.
+  * **Cobrador**: acesso somente a cobranças e despesas próprias.
+* “Acessar como cobrador”.
+
+---
+
+### 2. 📊 Dashboard
+
+* Indicadores:
+
+  * Contratos em aberto
+  * Total investido
+  * Previsão de lucro
+  * Total em circulação
+* Gráfico de desempenho semanal, mensal, anual e filtro personalizado.
+
+---
+
+### 3. 👤 Cadastro de Usuários
+
+* Campos: nome, telefone, e-mail, senha, função (administrador/cobrador)
+* Acesso:
+
+  * Cobrador: apenas cobranças e despesas que ele mesmo cadastrou
+  * Administrador: tudo
+
+---
+
+### 4. 💸 Controle de Despesas
+
+#### 🧾 Cadastro
+
+* Campos:
+
+  * Data
+  * Descrição
+  * Valor (R\$)
+* Registro vinculado ao usuário logado
+
+#### 📋 Listagem
+
+* Exibe: data, descrição, valor, usuário (visível apenas para admin)
+* Ações: editar 📝 | excluir 🗑️
+
+#### 🔍 Filtros
+
+* 📅 Data ou período
+* 🧾 Descrição (texto livre)
+* 💰 Valor mínimo/máximo
+* 👤 Nome do usuário (apenas para administrador)
+
+#### ⚖️ Regras de Visibilidade
+
+* **Cobrador**: vê apenas as próprias despesas
+* **Administrador**: vê todas + pode filtrar por qualquer usuário
+
+#### 📤 Exportações
+
+* PDF ou CSV, com base nos filtros aplicados
+
+#### 📊 Totalizador
+
+* Exibe o total somado das despesas listadas
+
+---
+
+### 5. 👥 Clientes
+
+* Cadastro:
+
+  * Nome
+
+  * CPF
+
+  * Telefone
+
+  * E-mail
+    \- Cidade
+
+  * Endereço (sem CEP ou estado)
+* Busca e filtros por nome, CPF ou telefone
+* Histórico de contratos e pagamentos
+
+---
+
+### 6. 📑 Contratos
+
+* Cadastro:
+
+  * Número automático
+  * Cliente
+  * Valor (com juros: % ou valor fixo em R\$)
+  * Parcelas, intervalo, data inicial
+  * Opções: permitir vencimento em sábado/domingo
+  * Observações
+* Regras:
+
+  * Edição e exclusão somente até 24h após criação
+  * Geração e envio de recibos manuais
+
+---
+
+### 7. 💰 Cobranças
+
+* Tela "Cobranças do Dia"
+
+  * Filtros: vencem hoje, vencidas
+  * Lista: contrato, cliente, valor, vencimento
+
+#### ✅ Envio Manual via WhatsApp
+
+* Link automático:
+
+  ```
+  https://wa.me/55[telefone]?text=[mensagem personalizada]
+  ```
+* Mensagem com nome do cliente, valor e vencimento
+* Sem uso de API paga
+
+---
+
+### 8. 📄 Detalhes do Contrato
+
+#### 8.1 📌 Informações Gerais
+
+* Nº do contrato, cliente, valor total, data, juros, lucro
+
+#### 8.2 📑 Parcelas
+
+* Status: pago / não pago
+* Valor recebido parcial
+* Juros, multa, despesas
+* Regra: se valor pago < valor da parcela, forçar novo vencimento + juros
+
+#### 8.3 🔻 Baixa de Contrato
+
+* Exibe:
+
+  * Valor total da dívida
+  * Valor já pago
+* Ações:
+
+  * Inserir valor atual
+  * Aplicar desconto
+  * Botão “Baixar contrato”
+  * Ícone para abrir campo de amortização
+
+---
+
+### 9. 📉 Amortização
+
+* Valor a amortizar
+* Opção de diluir em parcelas futuras
+* Exibição de simulação
+* Confirmação e geração de recibo
+
+---
+
+### 10. 🔁 Confirmações e Logs
+
+* Alertas:
+
+  * Parcelas parcialmente baixadas
+  * Exclusões irreversíveis
+* Logs:
+
+  * Quem executou qual ação e quando
+  * Filtro por tipo de ação (baixa, amortização, edição)
+
+---
+
+### 11. 🌐 Portal Público de Consulta de Dívidas
+
+> Permite ao cliente consultar contratos abertos sem login
+
+#### 📍 Página: `/consulta-divida`
+
+* Formulário:
+
+  * CPF + telefone
+* Resultado:
+
+  * Lista de contratos abertos
+  * Botão “Ver detalhes”
+
+#### 📄 Detalhes:
+
+* Parcelas vencidas
+* Valor total
+* Último vencimento
+* Botão “Pagar”
+
+#### 💸 Modal:
+
+* Campo: “Qual valor deseja pagar agora?”
+* Botão “Confirmar”
+
+#### 📤 Envio WhatsApp:
+
+Mensagem:
+
+```
+Olá, gostaria de negociar o contrato nº 001.
+O valor total da dívida é de R$950,00.
+Desejo pagar agora R$300,00.
+```
+
+Link:
+
+```plaintext
+https://wa.me/55[telefone]?text=...
+```
+
+---
+
+## 🗃️ Banco de Dados – Tabelas Principais
+
+| Tabela           | Campos principais                                                               |
+| ---------------- | ------------------------------------------------------------------------------- |
+| **users**        | id, nome, email, senha, tipo\_usuario                                           |
+| **clientes**     | id, nome, cpf, telefone, email, endereco                                        |
+| **contratos**    | id, numero, cliente\_id, valor\_total, juros, parcelas, intervalo, data\_inicio |
+| **parcelas**     | id, contrato\_id, numero, valor, vencimento, pago, valor\_pago, multa, despesa  |
+| **amortizacoes** | id, contrato\_id, valor\_amortizado, parcelas\_afetadas                         |
+| **pagamentos**   | id, parcela\_id, valor, data                                                    |
+| **despesas**     | id, usuario\_id, data, descricao, valor                                         |
+| **logs**         | id, usuario\_id, acao, data, observacao                                         |
+
+---
+
+## 🔗 Integrações
+
+| Recurso                | Solução                                    |
+| ---------------------- | ------------------------------------------ |
+| **WhatsApp**           | Link manual `wa.me`, com mensagem dinâmica |
+| **Recibos/Relatórios** | PDFKit, DomPDF                             |
+| **E-mail (opcional)**  | SMTP                                       |
+| **Exportações**        | CSV/PDF                                    |
+
+---
+
+## 📊 Relatórios e Auditoria
+
+* Filtros:
+
+  * Por período
+  * Por cliente
+  * Por contrato
+  * Por tipo de ação (baixa, amortização, despesa)
+* Exportações:
+
+  * PDF e CSV
+
+---
+
+## ⚙️ Tecnologias Recomendadas
+
+| Camada          | Tecnologia                      |
+| --------------- | ------------------------------- |
+| Front-end Web   | HTML + JS (ou React/Vue)        |
+| Back-end        | Node.js (Express)               |
+| Banco de Dados  | SQLite (Replit) ou MySQL        |
+| Relatórios      | PDFKit, ExcelJS                 |
+| WhatsApp Manual | Link com `encodeURIComponent()` |
+
+---
+
+Se quiser, posso agora:
+
+* Transformar essa estrutura em um PDF para documentação.
+* Montar o schema SQLite de todas as tabelas com permissões por usuário.
+* Criar a página HTML de controle de despesas com filtros dinâmicos.
+
+Qual desses próximos passos você deseja que eu entregue?
