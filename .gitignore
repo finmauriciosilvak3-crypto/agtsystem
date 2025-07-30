@@ -1,0 +1,9 @@
+node_modules/
+dist/
+laravel-app/node_modules/
+vue-client/node_modules/
+.env
+laravel-app/.env
+laravel-app/vendor/
+
+laravel-app/composer.lock

@@ -1,0 +1,10 @@
+{
+    "require": {
+        "laravel/framework": "^12.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan key:generate"
+        ]
+    }
+}
